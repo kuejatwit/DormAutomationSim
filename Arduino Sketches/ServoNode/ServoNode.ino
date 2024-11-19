@@ -8,10 +8,14 @@ const char* ssid = "NETGEAR18";
 const char* password = "dizzypiano125";
 
 ESP8266WebServer server(80);
+IPAddress local_ip(192,168,1,12);
+IPAddress gateway(192,168,1,1);
+IPAddress subnet(255,255,255,0);
 
 void setup() {
-    servo.attach(D6);
+    servo.attach(D4);
     Serial.begin(115200);
+    WiFi.config(local_ip, gateway, subnet);
     WiFi.begin(ssid, password);
     while (WiFi.status() != WL_CONNECTED) {
         delay(1000);
